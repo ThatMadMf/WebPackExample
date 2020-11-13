@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -13,12 +13,13 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
       filename: '../index.html',
       template: './src/index.html',
     }),
-    new MiniCssExtractPlugin({ filename: 'main.[chunkhash].css' })
+    new MiniCssExtractPlugin({
+      filename: '../css/main.[name].css'
+    })
   ],
 
   output: {
@@ -52,7 +53,9 @@ module.exports = {
   },
 
   optimization: {
-    minimizer: [new TerserPlugin()],
+    minimizer: [
+      new CssMinimizerPlugin(),
+      new TerserPlugin()],
 
     splitChunks: {
       cacheGroups: {
