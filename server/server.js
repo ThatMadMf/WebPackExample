@@ -23,6 +23,10 @@ const logToFile = (req) => {
             logPlainText(logInstance);
             break;
         }
+        case 'json': {
+            logJSON(logInstance);
+            break;
+        }
         default: {
             console.error('Format is not supported');
         }
@@ -31,11 +35,17 @@ const logToFile = (req) => {
 
 const logPlainText = (item) => {
     const formattedOutput = `${item.date}: ${item.host} to ${item.url} via ${item.agent} \n`
-    fs.appendFile(file, formattedOutput, function (err) {
-        if (err) {
-            return console.error("FAILED TO WRITE TO FILE", err)
-        }
-    });
+    fs.appendFile(file, formattedOutput, handleError);
+}
+
+const logJSON = (item) => {
+    fs.appendFile(file, JSON.stringify(item), handleError);
+}
+
+const handleError = (err) => {
+    if (err) {
+        return console.error("FAILED TO WRITE TO FILE", err)
+    }
 }
 
 server.listen(port, hostname, () => {
