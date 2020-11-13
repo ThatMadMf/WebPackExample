@@ -20,11 +20,13 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '../css/main.[name].css'
     })
+
   ],
 
   output: {
     filename: '[name].min.js',
-    path: path.resolve(__dirname, 'dist/js'),
+    path: path.join(__dirname, 'dist/js'),
+    chunkFilename: "[id].bundle.js"
   },
 
   module: {
@@ -53,22 +55,23 @@ module.exports = {
   },
 
   optimization: {
+    minimize: true,
     minimizer: [
       new CssMinimizerPlugin(),
-      new TerserPlugin()],
-
+      new TerserPlugin({
+        test: /\.js(\?.*)?$/i,
+        extractComments: false,
+        parallel: true,
+        terserOptions: {
+          output: {
+            comments: false,
+          },
+        },
+      })
+    ],
     splitChunks: {
-      cacheGroups: {
-        vendors: {
-          priority: -10,
-          test: /[\\/]node_modules[\\/]/
-        }
-      },
-
-      chunks: 'async',
-      minChunks: 1,
-      minSize: 30000,
-      name: false
-    }
+      chunks: 'all',
+      name: 'vendor',
+    },
   }
 }

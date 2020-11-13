@@ -4,7 +4,9 @@
   "description": "My webpack project",
   "main": "app.js",
   "dependencies": {
-    "bootstrap": "^4.5.3"
+    "bootstrap": "^4.5.3",
+    "clock": "^1.0.2",
+    "lodash": "^4.17.20"
   },
   "devDependencies": {
     "@webpack-cli/init": "^1.0.3",
