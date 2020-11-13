@@ -14,3 +14,15 @@ Fri Nov 13 2020 20:32:56 GMT+0200 (Eastern European Standard Time): localhost:30
 Fri Nov 13 2020 20:32:56 GMT+0200 (Eastern European Standard Time): localhost:3000 to /favicon.ico via Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36 
 Fri Nov 13 2020 20:32:56 GMT+0200 (Eastern European Standard Time): localhost:3000 to / via Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36 
 Fri Nov 13 2020 20:32:56 GMT+0200 (Eastern European Standard Time): localhost:3000 to /favicon.ico via Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36 
+date: 2020-11-13T18:46:25.166Z
+host: 'localhost:3000'
+url: /
+agent: >-
+  Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+  Chrome/86.0.4240.193 Safari/537.36
+date: 2020-11-13T18:46:25.341Z
+host: 'localhost:3000'
+url: /favicon.ico
+agent: >-
+  Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+  Chrome/86.0.4240.193 Safari/537.36

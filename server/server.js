@@ -1,10 +1,11 @@
 const http = require('http');
 const fs = require('fs');
+const yaml = require('js-yaml');
 
 const hostname = '127.0.0.1';
 const port = 3000;
 
-const file = process.env.LOG_FILE_PATH || 'logs.txt'
+const file = process.env.LOG_FILE_PATH || '../logs.txt'
 const format = process.env.FORMAT || 'text'
 
 const server = http.createServer((req, res) => {
@@ -27,6 +28,10 @@ const logToFile = (req) => {
             logJSON(logInstance);
             break;
         }
+        case 'yaml': {
+            logYaml(logInstance);
+            break;
+        }
         default: {
             console.error('Format is not supported');
         }
@@ -40,6 +45,10 @@ const logPlainText = (item) => {
 
 const logJSON = (item) => {
     fs.appendFile(file, JSON.stringify(item), handleError);
+}
+
+const logYaml = (item) => {
+    fs.appendFile(file, yaml.safeDump(item), handleError);
 }
 
 const handleError = (err) => {
