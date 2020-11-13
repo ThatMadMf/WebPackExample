@@ -4,6 +4,9 @@ const fs = require('fs');
 const hostname = '127.0.0.1';
 const port = 3000;
 
+const file = process.env.LOG_FILE_PATH || 'logs.txt'
+const format = process.env.FORMAT || 'text'
+
 const server = http.createServer((req, res) => {
     logToFile(req);
 
@@ -13,13 +16,25 @@ const server = http.createServer((req, res) => {
 });
 
 const logToFile = (req) => {
-    headers = req.headers; 
-    const logInstance = `${new Date()}: ${headers.host} to ${req.url} via ${headers['user-agent']} \n`
-    fs.appendFile('logs.txt', logInstance, function (err) {
-        if(err) {
+    headers = req.headers;
+    const logInstance = { date: new Date(), host: headers.host, url: req.url, agent: headers['user-agent'] }
+    switch (format.toLowerCase()) {
+        case 'text': {
+            logPlainText(logInstance);
+            break;
+        }
+        default: {
+            console.error('Format is not supported');
+        }
+    }
+}
+
+const logPlainText = (item) => {
+    const formattedOutput = `${item.date}: ${item.host} to ${item.url} via ${item.agent} \n`
+    fs.appendFile(file, formattedOutput, function (err) {
+        if (err) {
             return console.error("FAILED TO WRITE TO FILE", err)
         }
-        console.log(logInstance);
     });
 }
 
