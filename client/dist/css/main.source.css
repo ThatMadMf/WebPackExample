@@ -1,0 +1,1 @@
+html{height:100%}html body,html body #app{height:inherit}html body #app header{height:5%}html body #app footer{height:25%;background-color:#d3d3d3}html body #app .content-wrapper{height:70%;display:flex;flex-direction:row;justify-content:space-around;flex-wrap:wrap}html body #app .content-wrapper .card{margin-top:2rem;width:15rem;height:20rem}
